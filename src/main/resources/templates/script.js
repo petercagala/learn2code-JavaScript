@@ -5,11 +5,11 @@ newItem1.textContent = 'page loaded';
 browserList.appendChild(newItem1);
 
 let myButton = document.getElementById("myButtonId");
-myButton.addEventListener('click',function () {
+myButton.addEventListener('click',function clicked() {
     addListItemMessage("browser","klikol si na button")
 });
 
-document.body.addEventListener('keyup', function () {
+document.body.addEventListener('keyup', function keyboarded() {
     addListItemMessage("user", "stlacil si tlacitko na klavesnici")
 });
 
