@@ -1,14 +1,22 @@
-var vashoImage = document.getElementById("vasho");
+// var vashoImage = document.getElementById("vasho");
 
-vashoImage.addEventListener('click', function clickedVasho(event) {
-    console.log(event);
-    console.log(this); // this sa odkazuje na objekt -> vashoImage
+// querySelectorAll vytiahne nodeList, co nieje pole, takze musim pouzit kvoli
+// starsim prehliadacom Array.prototype.slice.call
+var imagesElements = document.querySelectorAll('form img');
 
-    var scoreElement = this.nextElementSibling;
-    var scoreAmount = Number(scoreElement.textContent);
+// Vytvori ArrayList z kolekcii nodes
+// imagesElements = Array.from(imagesElements); toto je druha, jednoduchsia moznost
+imagesElements = Array.prototype.slice.call(imagesElements);
 
-    scoreAmount = scoreAmount + 1;
+imagesElements.forEach(function (imageElement) {
+    imageElement.addEventListener('click', function () {
+        console.log(this);
+        var scoreElement = this.nextElementSibling;
+        var scoreAmount = Number(scoreElement.textContent);
 
-    console.log(scoreAmount);
-    scoreElement.textContent = scoreAmount;
-})
+        scoreAmount = scoreAmount + 1;
+
+        console.log(scoreAmount);
+        scoreElement.textContent = scoreAmount;
+    });
+});
