@@ -9,6 +9,7 @@ var imagesElements = document.querySelectorAll('form img');
 imagesElements = Array.prototype.slice.call(imagesElements);
 
 imagesElements.forEach(function (imageElement) {
+    // increase score
     imageElement.addEventListener('click', function () {
         console.log(this);
         var scoreElement = this.nextElementSibling;
@@ -18,5 +19,19 @@ imagesElements.forEach(function (imageElement) {
 
         console.log(scoreAmount);
         scoreElement.textContent = scoreAmount;
+    });
+
+    // mouse enters, the other guy hurts
+    imageElement.addEventListener('mouseover', function () {
+        var otherImage = _.without(imagesElements, this)[0];
+
+        otherImage.classList.add('desaturate');
+    });
+
+    // mouse leaves
+    imageElement.addEventListener('mouseout', function () {
+        var otherImage = _.without(imagesElements, this)[0];
+
+        otherImage.classList.remove('desaturate');
     });
 });

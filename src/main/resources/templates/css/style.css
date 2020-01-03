@@ -104,7 +104,7 @@ main {
 }
 
 .desaturate {
-	transform: scale(.99);
+	transform: scale(.95);
 	filter: grayscale(100%);
 }
 
