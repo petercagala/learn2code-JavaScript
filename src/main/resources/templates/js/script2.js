@@ -8,6 +8,18 @@ var imagesElements = document.querySelectorAll('form img');
 // imagesElements = Array.from(imagesElements); toto je druha, jednoduchsia moznost
 imagesElements = Array.prototype.slice.call(imagesElements);
 
+document.getElementsByTagName("h2")[0].addEventListener('click', function () {
+    var scoreNumber = localStorage.getItem("scoreNumber") ;
+    if (scoreNumber == null) {
+        scoreNumber = 0;
+    } else {
+        scoreNumber = +localStorage.getItem("scoreNumber");
+    }
+
+    scoreNumber++;
+    localStorage.setItem("scoreNumber", scoreNumber);
+})
+
 imagesElements.forEach(function (imageElement) {
     // increase score
     imageElement.addEventListener('click', function () {
