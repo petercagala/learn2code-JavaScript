@@ -8,7 +8,7 @@ var imagesElements = document.querySelectorAll('form img');
 // imagesElements = Array.from(imagesElements); toto je druha, jednoduchsia moznost
 imagesElements = Array.prototype.slice.call(imagesElements);
 
-document.getElementsByTagName("h2")[0].addEventListener('click', function () {
+document.getElementsByTagName("h1")[0].addEventListener('click', function () {
     var scoreNumber = localStorage.getItem("scoreNumber") ;
     if (scoreNumber == null) {
         scoreNumber = 0;
@@ -17,7 +17,12 @@ document.getElementsByTagName("h2")[0].addEventListener('click', function () {
     }
 
     scoreNumber++;
+
     localStorage.setItem("scoreNumber", scoreNumber);
+
+    if (scoreNumber > 7) {
+        localStorage.removeItem("scoreNumber");
+    }
 })
 
 imagesElements.forEach(function (imageElement) {
@@ -33,17 +38,20 @@ imagesElements.forEach(function (imageElement) {
         scoreElement.textContent = scoreAmount;
     });
 
-    // mouse enters, the other guy hurts
-    imageElement.addEventListener('mouseover', function () {
-        var otherImage = _.without(imagesElements, this)[0];
-
-        otherImage.classList.add('desaturate');
-    });
-
-    // mouse leaves
-    imageElement.addEventListener('mouseout', function () {
-        var otherImage = _.without(imagesElements, this)[0];
-
-        otherImage.classList.remove('desaturate');
-    });
+    // Possible event types on image Element
+    let eventsArray = ['mouseover', 'mouseout'];
+    guyHurtsAndUnhurts(eventsArray, imageElement, this);
 });
+
+function desaturateClassRemoveOrAdd(selectedPerson) {
+    var otherImage = _.without(imagesElements, selectedPerson)[0];
+    otherImage.classList.toggle("desaturate");
+}
+
+function guyHurtsAndUnhurts(eventsArray, imageElement, selectedPerson) {
+    eventsArray.forEach(function (eventItem) {
+        imageElement.addEventListener(eventItem, function () {
+            desaturateClassRemoveOrAdd(this);
+        });
+    });
+}
