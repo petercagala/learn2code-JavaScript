@@ -1,3 +1,4 @@
+// Toto onrejectionhandled fajnovy prodavok do feature/5-2
 var browserList = document.getElementById("browser"),
     newItem1 = document.createElement('li');
 ;
