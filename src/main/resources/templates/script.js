@@ -14,11 +14,13 @@ document.body.addEventListener('keyup', function keyboarded(event) {
     addListItemMessage("user", "stlacil si tlacitko na klavesnici")
 });
 
-window.addEventListener('beforeunload', function (event) {
+window.addEventListener('beforeunload', function beforeUnloadFunction(event) {
+    console.log(event);
+
     addListItemMessage('browser', "don't try to close me");
 
     event.returnValue = 'Do you want to close this window?';
-    console.log(event);
+
 })
 
 function addListItemMessage(idElement, message) {
