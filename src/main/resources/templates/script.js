@@ -1,8 +1,8 @@
 var browserList = document.getElementById("browser"),
-    newItem1 = document.createElement('li');
+    browserListItem = document.createElement('li');
 ;
-newItem1.textContent = 'page loaded';
-browserList.appendChild(newItem1);
+browserListItem.textContent = 'page loaded';
+browserList.appendChild(browserListItem);
 
 let myButton = document.getElementById("myButtonId");
 myButton.addEventListener('click',function clicked(event) {
@@ -11,16 +11,17 @@ myButton.addEventListener('click',function clicked(event) {
 
 document.getElementById("computeId").addEventListener("click", function computeFunction(event) {
     // var numberOfItems = 5;
-    var numberOfItems = document.getElementById("numberOfItems").value
+    var numberOfItems = document.getElementById("numberOfItems").value;
     var itemPrice = document.getElementById("itemPrice").value;
+    var computeWithTax = document.getElementById("computeWithTax").valueOf().checked;
     let computeParagraph = document.getElementById("computeParagraph");
     computeParagraph.innerHTML = "";
 
-    var resultPrice = computePrice(numberOfItems, itemPrice);
+    var resultPrice = computePrice(numberOfItems, itemPrice, computeWithTax);
 
     console.log(resultPrice);
-    computeParagraph.append("Kupil si "+ numberOfItems + " predmetov za " + resultPrice + " eur dokopy!!!");
-})
+    computeParagraph.append(computeMessage(numberOfItems, resultPrice, computeWithTax));
+});
 
 document.body.addEventListener('keypress', function keyboarded(event) {
 // document.body.addEventListener('keyup', function keyboarded(event) {
@@ -64,8 +65,22 @@ window.addEventListener('beforeunload', function (event) {
     console.log(event);
 })
 
-function computePrice(numberOfItems, itemPrice) {
-    return numberOfItems * itemPrice;
+function computePrice(numberOfItems, itemPrice, computeWithTax) {
+    var tax = 20;
+    if (computeWithTax == true) {
+        return numberOfItems * itemPrice + tax * 0.01 * numberOfItems * itemPrice;
+    } else {
+        return numberOfItems * itemPrice;
+    }
+}
+
+function computeMessage(numberOfItems, resultPrice, computeWithTax) {
+    if (computeWithTax == true) {
+        return "Kupil si "+ numberOfItems + " predmetov za " + resultPrice + " eur dokopy S DANOU!!!"
+    } else {
+        return "Kupil si "+ numberOfItems + " predmetov za " + resultPrice + " eur dokopy BEZ DANE!!!"
+    }
+
 }
 
 function addListItemMessage(idElement, message) {
