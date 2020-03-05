@@ -72,5 +72,10 @@ var Bros = (
     } ()
 );
 
+var values = [3,5,2,7];
+values = values.sort(function (num1, num2) {
+    return num2 - num1;
+});
+
 
 
