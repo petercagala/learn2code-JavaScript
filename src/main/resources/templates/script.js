@@ -13,9 +13,13 @@ document.getElementById("numberComparisonButtonId").addEventListener('click',fun
     let numberComparisonParagraph = document.getElementById("numberComparisonParagraphId");
     numberComparisonParagraph.innerHTML = "";
     // higherNumber(firstNumber, secondNumber)
-    var firstNumber = document.getElementById("firstNumber").value;
-    var secondNumber = document.getElementById("secondNumber").value;
-    numberComparisonParagraph.append("Najvacsie cislo je " + higherNumber(firstNumber, secondNumber));
+    var firstNumber = parseFloat(document.getElementById("firstNumber").valueOf().value);
+    var secondNumber = parseFloat(document.getElementById("secondNumber").valueOf().value);
+    var thirdNumber = parseFloat(document.getElementById("thirdNumber").valueOf().value);
+
+    var valuesForComparison = [];
+    valuesForComparison.push(firstNumber,secondNumber,thirdNumber)
+    numberComparisonParagraph.append("Najvacsie cislo je " + higherNumber(valuesForComparison));
 })
 
 document.getElementById("computeId").addEventListener("click", function computeFunction(event) {
@@ -92,11 +96,12 @@ function addListItemMessage(idElement, message) {
     userList.appendChild(userListItem);
 }
 
-function higherNumber(firstNumber, secondNumber) {
-    if (firstNumber > secondNumber) {
-        return firstNumber
-    }
-    return secondNumber;
+function higherNumber(valuesForComparison) {
+    // The new spread operator is a shorter way of writing the apply solution to get the maximum of an array:
+    //     var arr = [1, 2, 3];
+    // var max = Math.max(...arr);
+    var highestNumber = Math.max(...valuesForComparison);
+    return highestNumber;
 }
 
 
