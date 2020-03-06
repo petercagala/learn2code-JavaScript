@@ -63,7 +63,11 @@ function setScore(dude, score) {
  * @returns {string}: score + nameOfDude
  */
 function getKeyFromDude(dude) {
-    return "score" + _.capitalize(dude.alt); ;
+    // Converts the first character of string to upper case and the remaining to lower case.
+    // _.capitalize([string=''])
+
+    // alt: nazov objektu
+    return "score" + _.capitalize(dude.alt);
 }
 
 function desaturateClassRemoveOrAdd(selectedPerson) {
