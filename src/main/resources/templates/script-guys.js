@@ -2,6 +2,7 @@
 
 // querySelectorAll vytiahne nodeList, co nieje pole, takze musim pouzit kvoli
 // starsim prehliadacom Array.prototype.slice.call
+//.querySelectorAll('form img'):  takto si vies krasne zadefinovat list nodov, ktore chcem z DOMu vytiahnut
 var imagesElements = document.querySelectorAll('form img');
 
 // Vytvori ArrayList z kolekcii nodes
