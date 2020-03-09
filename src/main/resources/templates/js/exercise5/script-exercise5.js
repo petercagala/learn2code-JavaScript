@@ -31,7 +31,19 @@ calculateButtonElement.addEventListener("click", function calculateButton(event)
 
     var sumOfInputValues = 0.0;
     inputNumbersList.forEach(function (inputElement) {
-        sumOfInputValues = cutSumOfTwoNumbers(sumOfInputValues, parseFloat(inputElement.value));
+        // regular expression:
+        // \d any digit
+        // [.] one dot
+        // \d any digit
+        // /g is regular expression
+        var inputValueList = inputElement.value.match(/\d/g);
+        var inputValueString = "";
+        inputValueList.forEach(function (inpVal) {
+            inputValueString = inputValueString + inpVal;
+        });
+        var inputValueFloat = parseFloat(inputValueString);
+
+        sumOfInputValues = cutSumOfTwoNumbers(sumOfInputValues, inputValueFloat);
     });
     resultParagraphElement.textContent = "Súčet všetkých vstupných čísel je " + sumOfInputValues;
 });
