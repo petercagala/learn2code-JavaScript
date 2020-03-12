@@ -20,6 +20,9 @@ target/
 *.iml
 *.ipr
 
+### JavaScript ###
+prod/
+
 ### NetBeans ###
 /nbproject/private/
 /nbbuild/
