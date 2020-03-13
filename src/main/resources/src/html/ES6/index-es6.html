@@ -38,10 +38,23 @@
 </div>
 
 <!--Pozor, zavisi tu od poradia-->
-<script src="../../js/ES6/app.js"></script>
-<script src="../../js/ES6/script-es6.mymodule.js"></script>
-<script src="../../js/ES6/script-es6.js"></script>
 
+<!--PROD-->
+
+<!--    Pridaj polyfill-->
+<script src="../../../node_modules/babel-polyfill/dist/polyfill.js"></script>
+
+<script src="../../../prod/js/ES6/script-es6.mymodule.js"></script>
+<script src="../../../prod/js/ES6/script-es6.js"></script>
+<script src="../../../prod/js/ES6/app.js"></script>
+
+
+
+
+<!--DEV-->
+<!--<script src="../../js/ES6/script-es6.mymodule.js"></script>-->
+<!--<script src="../../js/ES6/app.js"></script>-->
+<!--<script src="../../js/ES6/script-es6.js"></script>-->
 
 </body>
 </html>
