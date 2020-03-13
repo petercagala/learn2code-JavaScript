@@ -9,6 +9,22 @@
 
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/main.css">
+
+    <!--Pozor, zavisi tu od poradia-->
+
+    <!--PROD-->
+    <!--    Pridaj polyfill-->
+<!--    <script src="../../../node_modules/babel-polyfill/dist/polyfill.js" defer></script>-->
+
+<!--    <script src="../../../prod/js/ES6/script-es6.mymodule.js" defer></script>-->
+<!--    <script src="../../../prod/js/ES6/script-es6.js" defer></script>-->
+<!--    <script src="../../../prod/js/ES6/app.js" defer></script>-->
+
+    <!--DEV-->
+<!--    defer -> js sa nacita az po zbehnuti celeho body-->
+    <script src="../../js/ES6/script-es6.mymodule.js" defer></script>
+    <script src="../../js/ES6/app.js" defer></script>
+    <script src="../../js/ES6/script-es6.js" defer></script>
 </head>
 <body class="container">
 
@@ -36,25 +52,6 @@
         number of comments: <strong id="numberOfComments">3</strong>
     </p>
 </div>
-
-<!--Pozor, zavisi tu od poradia-->
-
-<!--PROD-->
-
-<!--    Pridaj polyfill-->
-<script src="../../../node_modules/babel-polyfill/dist/polyfill.js"></script>
-
-<script src="../../../prod/js/ES6/script-es6.mymodule.js"></script>
-<script src="../../../prod/js/ES6/script-es6.js"></script>
-<script src="../../../prod/js/ES6/app.js"></script>
-
-
-
-
-<!--DEV-->
-<!--<script src="../../js/ES6/script-es6.mymodule.js"></script>-->
-<!--<script src="../../js/ES6/app.js"></script>-->
-<!--<script src="../../js/ES6/script-es6.js"></script>-->
 
 </body>
 </html>
