@@ -1,15 +1,7 @@
 // REQ https://itunes.apple.com/search?term=kolowrat je nejaky dodzubany
 // var promise = get("https://itunes.apple.com/search?term=kolowrat");
-var promise = get("https://jsonplaceholder.typicode.com/comments");
-
-// promise.then(
-//     result => console.log(JSON.parse(result))
-// ).catch(
-//     error => console.error(error, "Oh no, it is my false")
-// );
-
-// Dokonca moze byt error aj priamo v then()
-promise.then(
+get("https://jsonplaceholder.typicode.com/comments")
+    .then(
     result => console.log(JSON.parse(result)),
     error => console.error(error, "Oh no, it is my false")
 );
