@@ -9,22 +9,17 @@
         // Program vyskoci z tejto asynchronnej funkcie naspat von a vrati sa vtedy, ked sa dokonci prikaz,
         // pred ktorym je await
         let comments = await get("https://jsonplaceholder.typicode.com/comments");
-        // comments = JSON.parse(comments);
 
         let post = await get("https://jsonplaceholder.typicode.com/posts/" + comments[0].postId);
-         // post = JSON.parse(post);
 
         let user = await get("https://jsonplaceholder.typicode.com/users/" + post.userId);
-         // user = JSON.parse(user);
 
         console.log(user,  user.name);
     } catch (err) {
         console.error("Toto bude nejaky error z try catch", err);
     }
 } ()
-)
-
-
+);
 
 function get(url) {
     return new Promise(function (resolve, reject) {
