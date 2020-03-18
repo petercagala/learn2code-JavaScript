@@ -4,13 +4,20 @@
 // var promise = get("https://itunes.apple.com/search?term=kolowrat");
 
 get("https://jsonplaceholder.typicode.com/posts")
-    .then(JSON.parse) // posleme to do dalsieho then
+    .then(JSON.parse)// Takto je JSON.parse v skratenej podobe
     .then(result => {
-        get("https://jsonplaceholder.typicode.com/users/" + result[0].userId);
+        let userId = result[0].userId;
+        let url = "https://jsonplaceholder.typicode.com/users/" + userId;
+        return get(url); // Nesmierny pozor!!!! ty musis predsa vratit cez return dalsi promise, aby si vedel na tento promise dalej pokracovat
     })
-    .then(JSON.parse)
+    .then(result => {
+        let resultJSON = JSON.parse(result);
+        return resultJSON; // Musis ten JSON v tomto pripade na rozdiel od skratenej verzie vratit
+    })
     .then(
-        results => console.log(results)
+        results => {
+            console.log(results)
+        }
     )
     .catch(reason => console.log("Je to v prdeli", reason))
 ;
@@ -47,7 +54,7 @@ get("https://jsonplaceholder.typicode.com/posts")
  */
 function start(id, time) {
     return new Promise((resolve, reject) => {
-        setTimeout(() => resolve(`timer ${id} done`),time);
+        setTimeout(() => resolve(`timer ${id} done`), time);
     });
 }
 
@@ -57,20 +64,19 @@ function start(id, time) {
  * @returns {Promise<unknown>}
  */
 function get(url) {
-    return new Promise(function(resolve, reject) {
+    return new Promise(function (resolve, reject) {
         var req = new XMLHttpRequest();
         req.open('GET', url);
 
-        req.onload = function() {
+        req.onload = function () {
             if (req.status == 200) {
                 resolve(req.response);
-            }
-            else {
+            } else {
                 reject(Error(req.statusText));
             }
         };
 
-        req.onerror = function() {
+        req.onerror = function () {
             reject(Error("Network Error"));
         };
 
