@@ -1,0 +1,55 @@
+{
+	"env": {
+		"browser": true,
+		"commonjs": false,
+		"es6": true,
+		"node": false
+	},
+	"parserOptions": {
+		"ecmaVersion": 6,
+		"sourceType": "module",
+		"ecmaFeatures": {
+			"jsx": false,
+			"classes": true,
+			"defaultParams": true
+		}
+	},
+	"rules": {
+		"no-cond-assign": 2,
+		"no-constant-condition": 2,
+		"no-dupe-args": 2,
+		"no-dupe-keys": 2,
+		"no-duplicate-case": 2,
+		"no-extra-semi": 2,
+		"no-func-assign": 2,
+		"no-inner-declarations": 2,
+		"no-irregular-whitespace": 2,
+		"no-unexpected-multiline": 2,
+		"no-unreachable": 1,
+		"use-isnan": 2,
+		"no-this-before-super": 1,
+		"valid-typeof": 2,
+		"block-scoped-var": 2,
+		"no-empty-pattern": 2,
+		"no-eq-null": 2,
+		"no-global-assign": 2,
+		"no-implied-eval": 2,
+		"no-octal": 2,
+		"no-redeclare": 2,
+		"no-useless-escape": 2,
+		"no-warning-comments": 1,
+		"radix": 2,
+		"no-undef": 2,
+		"no-unused-vars": 1,
+		"new-cap": 2,
+		"no-mixed-operators": 2,
+		"no-mixed-spaces-and-tabs": 1,
+		"semi": 2,
+		"no-template-curly-in-string": 2,
+		"constructor-super": 2,
+		"no-class-assign": 2,
+		"no-const-assign": 2,
+		"no-dupe-class-members": 2,
+		"prefer-rest-params": 2
+	}
+}
