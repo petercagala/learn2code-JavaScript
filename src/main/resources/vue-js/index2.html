@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/main.css">
+	<title>Vue me</title>
+</head>
+<body>
+
+	<div id="app">
+		<ul>
+			<li v-for="dude in characters">
+				{{ dude }}
+			</li>
+		</ul>
+
+		<form class="add-new" @submit.prevent="add">
+			<input type="text" v-model="newDude">
+		</form>
+
+		<p class="preview">
+			{{ newDude }}
+		</p>
+	</div>
+
+
+	<script>
+	const app = new Vue({
+		el: '#app',
+		data: {
+			newDude: '',
+			characters: [
+				'Finn the Human',
+				'Jake the Dog'
+			]
+		},
+		methods: {
+			add() {
+				this.characters.push(
+					this.newDude
+				)
+			}
+		}
+	})
+	</script>
+
+</body>
+</html>

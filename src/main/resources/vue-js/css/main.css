@@ -1,0 +1,162 @@
+/* general */
+html {
+	box-sizing: border-box;
+}
+
+*, *:before, *:after {
+	box-sizing: inherit;
+}
+
+/* clearfix */
+.group:before, .container:before,
+.group:after, .container:after {
+	content: " ";
+	display: table;
+}
+
+.group:after, .container:after {
+	clear: both;
+}
+
+body {
+	font-size: 2em;
+	text-align: center;
+	background: #182d4f;
+	height: 100vh;
+	padding: 1.25em 0;
+}
+
+img {
+	width: 100%;
+	max-width: 300px;
+	vertical-align: middle;
+}
+
+.faded {
+  opacity: .35;
+}
+
+strong,
+.strong {
+	color: #f9c029;
+	font-weight: normal;
+}
+
+pre {
+	text-align: left;
+}
+
+ul {
+  padding-left: 0;
+  list-style: none;
+}
+
+li article {
+	color: #fff;
+	font-size: 14px;
+	font-weight: bold;
+	background: #9F3FA3;
+	border-radius: 9px;
+	margin: 12px auto;
+	padding: 10px 8px;
+  min-width: 360px;
+  border: 4px solid transparent;
+  transition: border-color .15s ease-in-out,
+              opacity .15s ease-in-out;
+  position: relative;
+}
+
+.gold {
+  border-color: yellow;
+}
+
+li article strong {
+	color: #fff;
+	font-weight: 300;
+}
+
+li article span {
+	font-weight: normal;
+	opacity: 0.75;
+	display: block;
+}
+
+
+li article,
+li .ctrl {
+  display: inline-block;
+}
+
+li .ctrl {
+  color: #fff;
+  font-size: 12px;
+  font-weight: bold;
+  width: 3.35em;
+  background: none;
+  border: none;
+  padding: 3px;
+  margin-left: 10px;
+  position: relative;
+  top: -10px;
+}
+
+li:nth-child(5n+1) article { background: #3b9ae1; }
+li:nth-child(5n+4) article { background: #f6be00; }
+li:nth-child(5n+3) article { background: #e64134; }
+li:nth-child(5n+2) article { background: #eb70b1; }
+li:nth-child(5n+5) article { background: #0f1a5f; }
+
+
+.add-new {
+  max-width: 320px;
+  /* margin: 0 auto 3em; */
+  margin: 3em auto 3em;
+}
+
+.add-new input {
+  font-size: 14px;
+  color: #fff;
+  background: none;
+  border: none;
+  border-bottom: 2px solid rgba(255, 255, 255, .9);
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+  margin-bottom: 0.5em;
+}
+
+.add-new input:focus {
+  outline: none;
+}
+
+.add-new input:first-child {
+  font-weight: bold;
+}
+
+.add-new input:last-child {
+  font-size: 13px;
+  width: 100%;
+}
+
+.preview {
+  font-size: 13px;
+  opacity: .5;
+}
+
+@media ( max-width: 860px ) {
+
+	article {
+		font-size: 13px;
+	}
+
+}
+
+
+.dude-enter-active, .dude-leave-active {
+  transition: all .20s;
+}
+
+.dude-enter, .dude-leave-to {
+  opacity: 0;
+  transform: scale(.75);
+}
