@@ -29,7 +29,13 @@
 
         <h2>This are characters items</h2>
         <ul>
-            <li v-for="item in characters" @click="counter++">{{item}}</li>
+            <li :class="{strong: !isShortName(item)}"
+                    v-for="item in characters" @click="counter++">{{item}}
+                <small v-if="isShortName(item)">
+                    <em>-lol, short name</em>
+                </small>
+
+            </li>
         </ul>
 
         <p>
@@ -68,6 +74,11 @@
                 add() {
                     this.characters.push(this.newDude);
                     this.newDude = '';
+                },
+                isShortName(item) {
+                    let words = item.split(' ');
+                    let lengthWords = words.length;
+                    return lengthWords < 3;
                 }
             }
             });
