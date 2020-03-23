@@ -10,79 +10,108 @@
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="./css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/main.css">
-
 
 
     <title>Vue me</title>
 </head>
 <body>
-    <div id="app">
-        <p>
-            My friend <strong>{{dude}}</strong>
-        </p>
-        <p>
-            I like {{dude}} very much!!!
-        </p>
+<div id="app">
+    <p>
+        My friend <strong>{{dude}}</strong>
+    </p>
+    <p>
+        I like {{dude}} very much!!!
+    </p>
 
-        <h2>This are characters items</h2>
-        <ul>
-            <li :class="{strong: !isShortName(item)}"
-                    v-for="item in characters" @click="counter++">{{item}}
-                <small v-if="isShortName(item)">
-                    <em>-lol, short name</em>
-                </small>
+    <h2>This are characters items</h2>
+    <ul>
+        <li v-for="item in characters" @click="counter++">
 
-            </li>
-        </ul>
+<!--            Po kliknuti chcem, aby sa preventla defaultna akcia,ale namiesto toho aby sa spustila metoda remove -->
+            <a class="ctrl" @click.prevent="remove(item)">&#215;</a>
+            <article :class="{faded: item.cool < 10, gold: item.cool > 50}">
+                {{item.who}}
+                <span>{{item.wat}}</span>
+            </article>
 
-        <p>
-            {{counter}}
-        </p>
+<!--            v-model vies blizsie specifikovat, ze pojde o cislo: v-model.number-->
+            <input class="ctrl" type="number" v-model.number="item.cool">
+<!--            <input class="ctrl" type="number" v-model="item.cool">-->
 
-<!--        Klasicky html formular ked odoslem, tak sa refresne stranka. Ak chcem, aby vue zabranilo tomuto defaultnemu refreshu,
-@submit.prevent  musim dat za submit     prevent: zabrnim klasickemu spravaniu a namieto toho sa spusti moja metoda add-->
-        <form class="add-new" @submit.prevent="add">
-<!--            Neskutocne krasne to bude previazane s dude-->
-            <input type="text" v-model="newDude">
-        </form>
+        </li>
+    </ul>
 
-        <p>
-            {{newDude}}
-        </p>
-    </div>
+    <p>
+        {{counter}}
+    </p>
 
-    <script>
-        // Vue bude zit na elemente s id app
-        // chceme aby sa na div s id app naviazali nejake data. html kod vo vnutri div bude reaktivny, bude reagovat na moju zmenu
-        const app = new Vue({
-            el: '#app',
-            data: {
-                newDude:'',
-                counter: 0,
-                dude: "Katka",
-                characters: [
-                    'Finn the Human',
-                    'Jake the dog',
-                    'Nieco 1',
-                    'Nieco 2'
-                ]
-            },
-            methods: {
-                add() {
-                    this.characters.push(this.newDude);
-                    this.newDude = '';
+    <!--        Klasicky html formular ked odoslem, tak sa refresne stranka. Ak chcem, aby vue zabranilo tomuto defaultnemu refreshu,
+    @submit.prevent  musim dat za submit     prevent: zabrnim klasickemu spravaniu a namieto toho sa spusti moja metoda add-->
+
+<!--    submit => sa spusti po stlaceni enter, len ked tam mam len jede input-->
+<!--    <form class="add-new" @submit.prevent="add">-->
+    <form class="add-new" @keydown.enter="add">
+        <!--            Neskutocne krasne to bude previazane s dude-->
+        Who: <input type="text" v-model="newDudeWho">
+        Wat: <input type="text" v-model="newDudeWat">
+    </form>
+
+    <p>
+        {{newDudeWho}} <br>
+        <small>{{newDudeWat}}</small>
+    </p>
+</div>
+
+<script>
+    // Vue bude zit na elemente s id app
+    // chceme aby sa na div s id app naviazali nejake data. html kod vo vnutri div bude reaktivny, bude reagovat na moju zmenu
+    const app = new Vue({
+        el: '#app',
+        data: {
+            newDudeWho: '',
+            newDudeWat: '',
+            counter: 0,
+            dude: "Katka",
+            characters: [
+                {
+                    "who": 'Finn the human',
+                    "wat": 'A silly kid, who want to be a great hero one day',
+                    "cool": 10
                 },
-                isShortName(item) {
-                    let words = item.split(' ');
-                    let lengthWords = words.length;
-                    return lengthWords < 3;
+                {
+                    "who": 'Jake the dog',
+                    "wat": 'Proste nejaky popis...',
+                    "cool": 12
                 }
+            ]
+        },
+        methods: {
+            add() {
+                let newCharacter = {
+                    "who": this.newDudeWho,
+                    "wat": this.newDudeWat,
+                    "cool": 15
+                };
+                this.characters.push(newCharacter);
+                this.newDudeWho = '';
+                this.newDudeWat = '';
+            },
+            isShortName(item) {
+                let words = item.split(' ');
+                let lengthWords = words.length;
+                return lengthWords < 3;
+            },
+            remove(dude) {
+                console.log(dude.who);
+                this.characters = this.characters.filter(item => item != dude);
             }
-            });
-    </script>
+        }
+    });
+</script>
 
 </body>
 </html>
